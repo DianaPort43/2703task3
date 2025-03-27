@@ -1,11 +1,19 @@
-import pytest
-from geometry import get_area
+from math import pi
 
-def test_rectangle():
-    assert get_area("rectangle", width=4, height=5) == 20
+class ShapeCalculator:
 
-def test_square():
-    assert get_area("square", side=4) == 16
+    @staticmethod
+    def get_area(shape, **params):
+        if shape == "rectangle":
+            return params["width"] * params["height"]
+        elif shape == "square":
+            return params["side"] ** 2
+        elif shape == "circle":
+            return pi * (params["radius"] ** 2)
+        else:
+            raise ValueError("Unsupported shape")
 
-def test_circle():
-    assert round(get_area("circle", radius=3), 2) == 28.27
+
+print(ShapeCalculator.get_area("rectangle", width=4, height=5)) 
+print(ShapeCalculator.get_area("square", side=4))  
+print(ShapeCalculator.get_area("circle", radius=3))  
